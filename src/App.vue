@@ -32,7 +32,7 @@ const selectedPlants = computed((): Plant[] =>
 )
 
 const possiblePlan2 = computed((): string[] => {
-  let result = []
+  const result = []
   const possibleRatio = [
     [1, 1],
     [2, 1],
@@ -59,7 +59,7 @@ const possiblePlan2 = computed((): string[] => {
 })
 
 const possiblePlan3 = computed((): string[] => {
-  let result = []
+  const result = []
   const possibleRatio = [
     [1, 1, 1],
     [2, 1, 1],
