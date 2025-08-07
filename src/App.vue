@@ -122,29 +122,29 @@ const existence = reactive(
       <button @click="easySelect(false, false, false, false)" class="btn btn-clear">
         清除筛选
       </button>
-      <button @click="easySelect(true, false, false, false)" class="btn btn-season">
-        切换春季
-      </button>
-      <button @click="easySelect(false, true, false, false)" class="btn btn-season">
-        切换夏季
-      </button>
       <button @click="easySelect(false, false, true, false)" class="btn btn-season">
         切换秋季
-      </button>
-      <button @click="easySelect(false, false, false, true)" class="btn btn-season">
-        切换冬季
-      </button>
-      <button @click="easySelect(true, true, false, false)" class="btn btn-two-season">
-        切换春夏
-      </button>
-      <button @click="easySelect(false, true, true, false)" class="btn btn-two-season">
-        切换夏秋
       </button>
       <button @click="easySelect(false, false, true, true)" class="btn btn-two-season">
         切换秋冬
       </button>
+      <button @click="easySelect(false, false, false, true)" class="btn btn-season">
+        切换冬季
+      </button>
       <button @click="easySelect(true, false, false, true)" class="btn btn-two-season">
         切换冬春
+      </button>
+      <button @click="easySelect(true, false, false, false)" class="btn btn-season">
+        切换春季
+      </button>
+      <button @click="easySelect(true, true, false, false)" class="btn btn-two-season">
+        切换春夏
+      </button>
+      <button @click="easySelect(false, true, false, false)" class="btn btn-season">
+        切换夏季
+      </button>
+      <button @click="easySelect(false, true, true, false)" class="btn btn-two-season">
+        切换夏秋
       </button>
     </div>
 
