@@ -124,6 +124,11 @@ function formatWithSign(num: number): string {
 <template>
   <div class="container">
     <h1>饥荒耕种配比表</h1>
+    <strong>使用说明：</strong>
+    选择季节后，表格中会显示同时可以在所有已勾选季节生长的作物。
+    可以通过快速选择按钮来简易地切换季节组合。
+    之后可以在每个作物前的选框中取消勾选以标记此作物种子尚未找到。
+    最后会在下方列出所有可能的配比方案。
     <h2>快速选择</h2>
     <div class="button-group">
       <button @click="easySelect(false, false, false, false)" class="btn btn-clear">
