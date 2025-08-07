@@ -107,10 +107,13 @@ function easySelect(spring: boolean, summer: boolean, autumn: boolean, winter: b
 }
 
 const existence = reactive(
-  plants.reduce((result, plant) => {
-    result[plant.名称] = true
-    return result
-  }, {}),
+  plants.reduce(
+    (result, plant) => {
+      result[plant.名称] = true
+      return result
+    },
+    {} as Record<string, boolean>,
+  ),
 )
 
 function formatWithSign(num: number): string {
