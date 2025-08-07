@@ -14,7 +14,7 @@ const plants = rawData as Plant[]
 
 import { reactive, computed } from 'vue'
 
-const 筛选 = reactive({
+const selected = reactive({
   春季: false,
   夏季: false,
   秋季: false,
@@ -23,10 +23,10 @@ const 筛选 = reactive({
 
 const selectedPlants = computed((): Plant[] =>
   plants.filter((plant: Plant): boolean => {
-    if (筛选.春季 && !plant.春季) return false
-    if (筛选.夏季 && !plant.夏季) return false
-    if (筛选.秋季 && !plant.秋季) return false
-    if (筛选.冬季 && !plant.冬季) return false
+    if (selected.春季 && !plant.春季) return false
+    if (selected.夏季 && !plant.夏季) return false
+    if (selected.秋季 && !plant.秋季) return false
+    if (selected.冬季 && !plant.冬季) return false
     return true
   }),
 )
@@ -40,6 +40,7 @@ const possiblePlan2 = computed((): string[] => {
   ]
   for (const [ia, a] of selectedPlants.value.entries()) {
     for (const [ib, b] of selectedPlants.value.entries()) {
+      if (existence[a.名称] === false || existence[b.名称] === false) continue
       if (ia >= ib) continue
       const vectorA = [a.催长剂, a.堆肥, a.粪肥]
       const vectorB = [b.催长剂, b.堆肥, b.粪肥]
@@ -71,6 +72,12 @@ const possiblePlan3 = computed((): string[] => {
   for (const [ia, a] of selectedPlants.value.entries()) {
     for (const [ib, b] of selectedPlants.value.entries()) {
       for (const [ic, c] of selectedPlants.value.entries()) {
+        if (
+          existence[a.名称] === false ||
+          existence[b.名称] === false ||
+          existence[c.名称] === false
+        )
+          continue
         if (ia >= ib || ib >= ic) continue
         const vectorA = [a.催长剂, a.堆肥, a.粪肥]
         const vectorB = [b.催长剂, b.堆肥, b.粪肥]
@@ -93,11 +100,18 @@ const possiblePlan3 = computed((): string[] => {
 const possiblePlan = computed((): string[] => [...possiblePlan2.value, ...possiblePlan3.value])
 
 function easySelect(spring: boolean, summer: boolean, autumn: boolean, winter: boolean): void {
-  筛选.春季 = spring
-  筛选.夏季 = summer
-  筛选.秋季 = autumn
-  筛选.冬季 = winter
+  selected.春季 = spring
+  selected.夏季 = summer
+  selected.秋季 = autumn
+  selected.冬季 = winter
 }
+
+const existence = reactive(
+  plants.reduce((result, plant) => {
+    result[plant.名称] = true
+    return result
+  }, {}),
+)
 </script>
 
 <template>
@@ -128,16 +142,17 @@ function easySelect(spring: boolean, summer: boolean, autumn: boolean, winter: b
 
     <h2>季节选择</h2>
     <div class="checkbox-group">
-      <label><input type="checkbox" v-model="筛选.春季" /> 春季</label>
-      <label><input type="checkbox" v-model="筛选.夏季" /> 夏季</label>
-      <label><input type="checkbox" v-model="筛选.秋季" /> 秋季</label>
-      <label><input type="checkbox" v-model="筛选.冬季" /> 冬季</label>
+      <label><input type="checkbox" v-model="selected.春季" /> 春季</label>
+      <label><input type="checkbox" v-model="selected.夏季" /> 夏季</label>
+      <label><input type="checkbox" v-model="selected.秋季" /> 秋季</label>
+      <label><input type="checkbox" v-model="selected.冬季" /> 冬季</label>
     </div>
 
     <h2>有效植物</h2>
     <table class="plants-table">
       <thead>
         <tr>
+          <th>存在</th>
           <th>名称</th>
           <th>春季</th>
           <th>夏季</th>
@@ -150,6 +165,7 @@ function easySelect(spring: boolean, summer: boolean, autumn: boolean, winter: b
       </thead>
       <tbody>
         <tr v-for="plant in selectedPlants" :key="plant.名称">
+          <td><input type="checkbox" v-model="existence[plant.名称]" /></td>
           <td>{{ plant.名称 }}</td>
           <td>{{ plant.春季 ? '是' : '否' }}</td>
           <td>{{ plant.夏季 ? '是' : '否' }}</td>
