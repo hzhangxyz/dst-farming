@@ -134,10 +134,18 @@ const existence = reactive(
       <button @click="easySelect(false, false, false, true)" class="btn btn-season">
         切换冬季
       </button>
-      <button @click="easySelect(true, true, false, false)" class="btn btn-season">切换春夏</button>
-      <button @click="easySelect(false, true, true, false)" class="btn btn-season">切换夏秋</button>
-      <button @click="easySelect(false, false, true, true)" class="btn btn-season">切换秋冬</button>
-      <button @click="easySelect(true, false, false, true)" class="btn btn-season">切换冬春</button>
+      <button @click="easySelect(true, true, false, false)" class="btn btn-two-season">
+        切换春夏
+      </button>
+      <button @click="easySelect(false, true, true, false)" class="btn btn-two-season">
+        切换夏秋
+      </button>
+      <button @click="easySelect(false, false, true, true)" class="btn btn-two-season">
+        切换秋冬
+      </button>
+      <button @click="easySelect(true, false, false, true)" class="btn btn-two-season">
+        切换冬春
+      </button>
     </div>
 
     <h2>季节选择</h2>
@@ -238,6 +246,11 @@ h2 {
 
 .btn-season {
   background: #4bcf8f;
+}
+
+.btn-two-season {
+  background: linear-gradient(145deg, #f39c12, #e67e22); /* 金黄色渐变 */
+  box-shadow: 0 4px 8px rgba(255, 159, 0, 0.3); /* 光晕效果 */
 }
 
 /* 复选框样式 */
