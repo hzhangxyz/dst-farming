@@ -112,6 +112,10 @@ const existence = reactive(
     return result
   }, {}),
 )
+
+function formatWithSign(num: number): string {
+  return `${num >= 0 ? '+' : ''}${num}`
+}
 </script>
 
 <template>
@@ -179,9 +183,9 @@ const existence = reactive(
           <td>{{ plant.夏季 ? '是' : '否' }}</td>
           <td>{{ plant.秋季 ? '是' : '否' }}</td>
           <td>{{ plant.冬季 ? '是' : '否' }}</td>
-          <td>{{ plant.催长剂 }}</td>
-          <td>{{ plant.堆肥 }}</td>
-          <td>{{ plant.粪肥 }}</td>
+          <td>{{ formatWithSign(plant.催长剂) }}</td>
+          <td>{{ formatWithSign(plant.堆肥) }}</td>
+          <td>{{ formatWithSign(plant.粪肥) }}</td>
         </tr>
       </tbody>
     </table>
