@@ -50,7 +50,7 @@ const possiblePlan2 = computed((): string[] => {
           (_, i) => vectorA[i] * ratio[0] + vectorB[i] * ratio[1],
         )
         if (total.every((v) => v == 0)) {
-          result.push(`${ratio[0]}${a.名称} + ${ratio[1]}${b.名称}`)
+          result.push(`${ratio[0]}${a.名称} : ${ratio[1]}${b.名称}`)
         }
       }
     }
@@ -88,7 +88,7 @@ const possiblePlan3 = computed((): string[] => {
             (_, i) => vectorA[i] * ratio[0] + vectorB[i] * ratio[1] + vectorC[i] * ratio[2],
           )
           if (total.every((v) => v == 0)) {
-            result.push(`${ratio[0]}${a.名称} + ${ratio[1]}${b.名称} + ${ratio[2]}${c.名称}`)
+            result.push(`${ratio[0]}${a.名称} : ${ratio[1]}${b.名称} : ${ratio[2]}${c.名称}`)
           }
         }
       }
