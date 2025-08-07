@@ -256,8 +256,8 @@ h2 {
 }
 
 .btn-two-season {
-  background: linear-gradient(145deg, #f39c12, #e67e22); /* 金黄色渐变 */
-  box-shadow: 0 4px 8px rgba(255, 159, 0, 0.3); /* 光晕效果 */
+  background: linear-gradient(145deg, #f39c12, #e67e22);
+  box-shadow: 0 4px 8px rgba(255, 159, 0, 0.3);
 }
 
 /* 复选框样式 */
